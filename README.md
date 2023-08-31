@@ -32,10 +32,78 @@ Normalizing the data
 Splitting the data into test and train
 
 ## PROGRAM:
-/Write your code here/
+```
+Name:Shaik Shoaib Nawaz
+Reg no:212222240094
+import pandas as pd
+df=pd.read_csv("/content/Churn_Modelling.csv")
+df.head()
+df.isnull().sum()
+df.drop(["RowNumber","Age","Gender","Geography","Surname"],inplace=True,axis=1)
+print(df)
+x=df.iloc[:,:-1].values
+y=df.iloc[:,-1].values
+print(x)
+print(y)
+from sklearn.preprocessing import MinMaxScaler
+scaler = MinMaxScaler()
+df1 = pd.DataFrame(scaler.fit_transform(df))
+print(df1)
+from sklearn.model_selection import train_test_split
+xtrain,ytrain,xtest,ytest=train_test_split(x,y,test_size=0.2,random_state=2)
+print(xtrain)
+print(len(xtrain))
+print(xtest)
+print(len(xtest))
+from sklearn.preprocessing import StandardScaler
+sc = StandardScaler()
+df1 = sc.fit_transform(df)
+print(df1)
+```
 
 ## OUTPUT:
-/ Show the result/
+i.) Dataset:
+![image](https://github.com/shoaib3136/Ex.No.1---Data-Preprocessing/assets/117919362/d46ea43a-2abd-4c01-9429-8c059ec984e9)
+
+
+
+
+ii.) Describing:
+![image](https://github.com/shoaib3136/Ex.No.1---Data-Preprocessing/assets/117919362/493e6157-4c94-463f-b922-400ea21f777c)
+
+
+
+
+iii.) Normalisation:
+![image](https://github.com/shoaib3136/Ex.No.1---Data-Preprocessing/assets/117919362/52891058-1763-4f6e-be50-32827bbedcf9)
+
+
+
+
+
+
+iv.) x train and Y train values:
+![image](https://github.com/shoaib3136/Ex.No.1---Data-Preprocessing/assets/117919362/04ad4a94-9aff-403f-bdec-d33616eace7a)
+
+
+
+
+
+
+v.) x and y values:
+![image](https://github.com/shoaib3136/Ex.No.1---Data-Preprocessing/assets/117919362/c1e4fe8a-8051-4571-b4c2-064daa8da9f1)
+
+
+
+
+
+vi.) x test and y test values:
+![image](https://github.com/shoaib3136/Ex.No.1---Data-Preprocessing/assets/117919362/f31f7102-b3b7-4066-9aca-63660cff6c5f)
+
+
+
+
+
 
 ## RESULT
 /Type your result here/
