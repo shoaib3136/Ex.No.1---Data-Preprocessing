@@ -35,75 +35,115 @@ Splitting the data into test and train
 ```
 Name:Shaik Shoaib Nawaz
 Reg no:212222240094
+
+# Importing Libraries
 import pandas as pd
-df=pd.read_csv("/content/Churn_Modelling.csv")
-df.head()
-df.isnull().sum()
-df.drop(["RowNumber","Age","Gender","Geography","Surname"],inplace=True,axis=1)
-print(df)
-x=df.iloc[:,:-1].values
-y=df.iloc[:,-1].values
-print(x)
-print(y)
-from sklearn.preprocessing import MinMaxScaler
-scaler = MinMaxScaler()
-df1 = pd.DataFrame(scaler.fit_transform(df))
-print(df1)
-from sklearn.model_selection import train_test_split
-xtrain,ytrain,xtest,ytest=train_test_split(x,y,test_size=0.2,random_state=2)
-print(xtrain)
-print(len(xtrain))
-print(xtest)
-print(len(xtest))
+import io
 from sklearn.preprocessing import StandardScaler
-sc = StandardScaler()
-df1 = sc.fit_transform(df)
-print(df1)
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.model_selection import train_test_split
+
+#Read the dataset
+df=pd.read_csv('Churn_Modelling.csv')
+df
+
+#Checking for null values
+df.isnull().sum()
+
+#Checking for dulpicated values
+df.duplicated()
+
+#Dropping unwanted columns
+df.drop('RowNumber',axis=1,inplace=True)
+df.drop('CustomerId',axis=1,inplace=True)
+df.drop('Age',axis=1,inplace=True)
+df.drop('Gender',axis=1,inplace=True)
+df.drop('Surname',axis=1,inplace=True)
+df.drop('Geography',axis=1,inplace=True)
+df
+
+#Normalising using MinMaxScaler
+ms=MinMaxScaler()
+df2=pd.DataFrame(ms.fit_transform(df))
+df2
+
+#Splitting the dataset - x
+X=df2.iloc[:,:-1].values
+X
+
+#Splitting the dataset - y
+y=df2.iloc[:,-1].values
+y
+
+# Training the dataset
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+print(X_train)
+print("X_train: ",len(X_train))
+print(X_test)
+print("Size of X_test: ",len(X_test))
 ```
 
 ## OUTPUT:
-i.) Dataset:
-![image](https://github.com/shoaib3136/Ex.No.1---Data-Preprocessing/assets/117919362/d46ea43a-2abd-4c01-9429-8c059ec984e9)
-
-
-
-
-ii.) Describing:
-![image](https://github.com/shoaib3136/Ex.No.1---Data-Preprocessing/assets/117919362/493e6157-4c94-463f-b922-400ea21f777c)
-
-
-
-
-iii.) Normalisation:
-![image](https://github.com/shoaib3136/Ex.No.1---Data-Preprocessing/assets/117919362/52891058-1763-4f6e-be50-32827bbedcf9)
+i.)Read the Dataset:
+![image](https://github.com/shoaib3136/Ex.No.1---Data-Preprocessing/assets/117919362/31cf0f1d-43c5-4d26-8683-023094b42542)
 
 
 
 
 
 
-iv.) x train and Y train values:
-![image](https://github.com/shoaib3136/Ex.No.1---Data-Preprocessing/assets/117919362/04ad4a94-9aff-403f-bdec-d33616eace7a)
+
+ii.) Checking Null values:
+
+![image](https://github.com/shoaib3136/Ex.No.1---Data-Preprocessing/assets/117919362/2ac109f2-fb56-4229-a4be-f712391e6d0c)
+
+
+
+
+
+iii.) Dropping Unwanted columns:
+
+![image](https://github.com/shoaib3136/Ex.No.1---Data-Preprocessing/assets/117919362/1821919d-b779-4df6-b6e2-109fc7906a24)
 
 
 
 
 
 
-v.) x and y values:
-![image](https://github.com/shoaib3136/Ex.No.1---Data-Preprocessing/assets/117919362/c1e4fe8a-8051-4571-b4c2-064daa8da9f1)
 
+iv.) Normalising using MinMaxscaler:
 
+![image](https://github.com/shoaib3136/Ex.No.1---Data-Preprocessing/assets/117919362/dcac4acd-f870-4f6f-b2ae-b2ec74042be8)
 
-
-
-vi.) x test and y test values:
-![image](https://github.com/shoaib3136/Ex.No.1---Data-Preprocessing/assets/117919362/f31f7102-b3b7-4066-9aca-63660cff6c5f)
 
 
 
 
 
 
-## RESULT
-/Type your result here/
+v.) Splitting the dataset-X:
+
+![image](https://github.com/shoaib3136/Ex.No.1---Data-Preprocessing/assets/117919362/6106e7b2-a0a3-4e2e-942a-4a3d520213bb)
+
+
+
+
+
+vi.) Splitting the dataset-Y:
+
+![image](https://github.com/shoaib3136/Ex.No.1---Data-Preprocessing/assets/117919362/57731d65-be73-46d7-a4fd-386fb33aa881)
+
+
+
+vii.)Training the dataset:
+
+![image](https://github.com/shoaib3136/Ex.No.1---Data-Preprocessing/assets/117919362/bc080be1-9128-4d71-9ad5-03a8f079172b)
+
+
+
+
+
+
+
+## RESULT:
+The data set downloaded from kaggle is successfully processed.
